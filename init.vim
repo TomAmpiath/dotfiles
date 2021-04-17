@@ -63,7 +63,8 @@ autocmd FileType ruby setlocal ts=2 sw=2 sts=2
 autocmd FileType python setlocal ts=4 sw=4 sts=4
 autocmd FileType nim setlocal ts=2 sw=2 sts=2 noexpandtab
 autocmd FileType c setlocal ts=8 sw=8 sts=8 noexpandtab
-autocmd FileType cpp setlocal ts=2 sw=2 sts=2 noexpandtab
+autocmd FileType h setlocal ts=8 sw=8 sts=8 noexpandtab
+autocmd FileType cpp setlocal ts=8 sw=8 sts=8 noexpandtab
 autocmd FileType qml setlocal ts=4 sw=4 sts=4
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
