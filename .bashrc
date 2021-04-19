@@ -122,4 +122,5 @@ alias fcpy="rsync --progress -a "
 alias c89="gcc -std=c89 -ansi -pedantic -Wall -Werror "
 alias downvid="youtube-dl -f bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm] "
 alias downplay='youtube-dl -f bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm] -o "%(playlist_index)s-%(title)s.%(ext)s" '
+alias xopen="xdg-open "
 # ====================================================================
