@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/tom/.oh-my-zsh"
+export ZSH="/Users/tom/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -23,14 +23,13 @@ ZSH_THEME="af-magic"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -45,8 +44,9 @@ ZSH_THEME="af-magic"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -72,6 +72,7 @@ ZSH_THEME="af-magic"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
+	python
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 	colored-man-pages
@@ -93,15 +94,29 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 alias tree="tree -I 'venv|__pycache__'"
-alias vim="nvim "
 alias fcpy="rsync --progress -a "
-alias downvid="youtube-dl -f bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm] "
-alias downplay='youtube-dl -f bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm] -o "%(playlist_index)s-%(title)s.%(ext)s" '
-alias xopen="xdg-open "
-alias pyf="$HOME/dev/Scripts/pyformat.sh "
-alias pyside2="source $HOME/dev/envs/pyside2/bin/activate"
-alias pyside2_opencv="source $HOME/dev/envs/pyside2_opencv/bin/activate"
+alias down="aria2c -x 16 "
+alias downvid="youtube-dl --external-downloader aria2c --external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M' -f 'bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm]' "
+alias downplay="youtube-dl --external-downloader aria2c --external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M' -f 'bestvideo[ext!=webm]+bestaudio[ext!=webm]/best[ext!=webm]' -o '%(playlist_index)s-%(title)s.%(ext)s' "
+alias acat="cat $HOME/.zshrc | grep alias"
+alias act="source $HOME/envs/env1/bin/activate"
+
+# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+export PATH="/opt/homebrew/opt/pyside@2/bin:$PATH"
+
+export PYTHONPATH="$PYTHONPATH:/opt/homebrew/Cellar/pyside@2/5.15.2_1/lib/python3.9/site-packages"
+
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
+
+export PKG_CONFIG_PATH="/opt/homebrew/opt/qt@5/lib/pkgconfig"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/pyside@2/lib/pkgconfig"
+
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/opt/homebrew/opt/llvm/lib -L/opt/homebrew/opt/qt@5/lib -L/opt/homebrew/opt/pyside@2/lib"
+
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include -I/opt/homebrew/opt/qt@5/include -I/opt/homebrew/opt/pyside@2/include"
+
+export QT_MAC_WANTS_LAYER=1
+export QT_MAC_USE_NSWINDOW=1
+
